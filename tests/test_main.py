@@ -18,7 +18,8 @@ def test_health() -> None:
 
 def test_sms_inbound_stub() -> None:
     """The inbound SMS endpoint should return a TwiML response."""
-    response = client.post("/sms/inbound", data={"From": "+14155551234", "Body": "Hello"})
+    payload = {"From": "+14155551234", "Body": "Hello"}
+    response = client.post("/sms/inbound", data=payload)
     assert response.status_code == 200
     assert "<Response>" in response.text
     assert "<Message>" in response.text

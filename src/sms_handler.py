@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from fastapi import Request
 
-from src.agent_client import ask_agent
 from src.config import settings
 
 
@@ -43,6 +42,7 @@ def _twiml_response(message: str) -> str:
 async def handle_outbound_sms(to_number: str, message: str) -> None:
     """Send a proactive SMS.
 
-    TODO: implement after Twilio credentials and proactive vs reactive question are answered.
+    TODO: implement after Twilio credentials and proactive vs reactive
+    question are answered.
     """
     del to_number, message  # unused

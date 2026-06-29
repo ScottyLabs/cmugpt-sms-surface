@@ -2,6 +2,8 @@
 
 import os
 import sys
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 import uvicorn
@@ -16,7 +18,16 @@ from src.config import settings
 from src.scheduler import start_scheduler, stop_scheduler
 from src.sms_handler import handle_inbound_sms
 
-app = FastAPI(title=settings.app_name, debug=settings.debug)
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    """Manage startup and shutdown lifecycle."""
+    await start_scheduler()
+    yield
+    await stop_scheduler()
+
+
+app = FastAPI(title=settings.app_name, debug=settings.debug, lifespan=lifespan)
 
 
 @app.get("/health")
@@ -38,18 +49,6 @@ async def auth_callback(code: str, state: str) -> dict[str, str]:
     TODO: implement after Keycloak question is answered.
     """
     return {"status": "stub", "code": code, "state": state}
-
-
-@app.on_event("startup")
-async def startup() -> None:
-    """Start background services when the app boots."""
-    await start_scheduler()
-
-
-@app.on_event("shutdown")
-async def shutdown() -> None:
-    """Clean up background services on shutdown."""
-    await stop_scheduler()
 
 
 def main() -> None:
