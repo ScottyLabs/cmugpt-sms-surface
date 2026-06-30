@@ -1,4 +1,4 @@
-# sms-surface
+# cmugpt-sms-surface
 
 SMS companion feature for the [CMUGPT Agent](https://github.com/ScottyLabs/cmugpt-agent). Students text a Twilio number, authenticate with their CMU Andrew ID, and chat with the CMU campus assistant for event notifications, schedule planning, reminders, and orientation-week help.
 
