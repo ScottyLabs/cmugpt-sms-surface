@@ -8,7 +8,7 @@ from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI, Request
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import JSONResponse
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
@@ -16,7 +16,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.config import settings
 from src.scheduler import start_scheduler, stop_scheduler
-from src.sms_handler import handle_inbound_sms
+from src.sms_handler import handle_inbound_message
 
 
 @asynccontextmanager
@@ -36,10 +36,10 @@ async def health() -> dict[str, str]:
     return {"status": "ok", "service": settings.app_name}
 
 
-@app.post("/sms/inbound", response_class=PlainTextResponse)
-async def sms_inbound(request: Request) -> str:
-    """Twilio webhook for incoming SMS messages."""
-    return await handle_inbound_sms(request)
+@app.post("/message/inbound", response_class=JSONResponse)
+async def message_inbound(request: Request) -> JSONResponse:
+    """BlueBubbles webhook for incoming iMessage messages."""
+    return await handle_inbound_message(request)
 
 
 @app.get("/auth/callback")

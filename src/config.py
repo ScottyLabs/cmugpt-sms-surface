@@ -15,10 +15,11 @@ class Settings(BaseSettings):
     app_name: str = "SMS Surface"
     debug: bool = False
 
-    # Twilio
-    twilio_account_sid: str = ""
-    twilio_auth_token: str = ""
-    twilio_phone_number: str = ""
+    # BlueBubbles server (iMessage bridge)
+    # Docs: https://docs.bluebubbles.app/server
+    bluebubbles_url: str = "http://localhost:1234"
+    bluebubbles_password: str = ""
+    bluebubbles_chat_guid: str = ""  # optional default chat to send from
 
     # CMUGPT Agent integration
     # TODO: choose one after answering the agent-integration question.

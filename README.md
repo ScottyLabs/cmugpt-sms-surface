@@ -1,6 +1,6 @@
 # cmugpt-sms-surface
 
-SMS companion feature for the [CMUGPT Agent](https://github.com/ScottyLabs/cmugpt-agent). Students text a Twilio number, authenticate with their CMU Andrew ID, and chat with the CMU campus assistant for event notifications, schedule planning, reminders, and orientation-week help.
+SMS/iMessage companion feature for the [CMUGPT Agent](https://github.com/ScottyLabs/cmugpt-agent). Students send iMessages via [BlueBubbles](https://bluebubbles.app/), authenticate with their CMU Andrew ID, and chat with the CMU campus assistant for event notifications, schedule planning, reminders, and orientation-week help.
 
 ## Local setup
 
@@ -38,7 +38,7 @@ sms-surface/
 ├── src/
 │   ├── main.py          # FastAPI app + webhook routes
 │   ├── config.py        # Environment-based settings
-│   ├── sms_handler.py   # Twilio inbound/outbound SMS logic
+│   ├── sms_handler.py   # BlueBubbles inbound/outbound iMessage logic
 │   ├── auth.py          # CMU Keycloak integration
 │   ├── database.py      # DB session + engine
 │   ├── agent_client.py  # Boundary with CMUGPT agent (API or direct import)
