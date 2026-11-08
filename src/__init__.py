@@ -1,1 +1,1 @@
-"""SMS Surface — companion SMS feature for CMUGPT Agent."""
+"""SMS Surface, the companion SMS feature for the Bark Agent."""

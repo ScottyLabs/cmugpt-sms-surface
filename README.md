@@ -1,28 +1,15 @@
 # cmugpt-sms-surface
 
-SMS/iMessage companion feature for the [CMUGPT Agent](https://github.com/ScottyLabs/cmugpt-agent). Students send iMessages via [BlueBubbles](https://bluebubbles.app/), authenticate with their CMU Andrew ID, and chat with the CMU campus assistant for event notifications, schedule planning, reminders, and orientation-week help.
+SMS/iMessage companion feature for the [Bark Agent](https://git.cmu.dev/ScottyLabs/cmugpt-agent). Students send iMessages via [BlueBubbles](https://bluebubbles.app/), authenticate with their CMU Andrew ID, and chat with the CMU campus assistant for event notifications, schedule planning, reminders, and orientation-week help.
 
 ## Local setup
 
-1. Install dependencies with [`uv`](https://docs.astral.sh/uv/):
+Install Lix and log in to OpenBao by following kennel's [local development](https://docs.kennel.scottylabs.org/guides/local-development/#installing-nix) and [secrets](https://docs.kennel.scottylabs.org/guides/secrets/#local-development) guides. Then enter the dev shell, which installs the dependencies, and start the service on `http://localhost:8000`:
 
 ```sh
-uv sync
+nix develop
+pitchfork start --local
 ```
-
-2. Copy the example environment file and fill in your values:
-
-```sh
-cp .env.example .env
-```
-
-3. Run the service:
-
-```sh
-uv run python src/main.py
-```
-
-The app starts on `http://localhost:8000` by default.
 
 ## Development commands
 
@@ -41,7 +28,7 @@ sms-surface/
 │   ├── sms_handler.py   # BlueBubbles inbound/outbound iMessage logic
 │   ├── auth.py          # CMU Keycloak integration
 │   ├── database.py      # DB session + engine
-│   ├── agent_client.py  # Boundary with CMUGPT agent (API or direct import)
+│   ├── agent_client.py  # Boundary with the Bark agent (API or direct import)
 │   └── scheduler.py     # Reminders + event notifications
 ```
 
@@ -54,8 +41,8 @@ sms-surface/
 ## Open questions before implementation
 
 1. Should SMS call the agent API or import the agent package directly?
-2. What database for production? (SQLite for MVP, then Postgres?)
-3. What "basic student info" should be saved?
-4. How does the CMU Keycloak auth flow work?
-5. Where does orientation/week event data come from?
-6. Should reminders be proactive or reactive in the MVP?
+1. What database for production? (SQLite for MVP, then Postgres?)
+1. What "basic student info" should be saved?
+1. How does the CMU Keycloak auth flow work?
+1. Where does orientation/week event data come from?
+1. Should reminders be proactive or reactive in the MVP?

@@ -1,4 +1,4 @@
-"""Integration boundary with the CMUGPT agent.
+"""Integration boundary with the Bark agent.
 
 This module keeps the SMS service decoupled from the agent's internals.
 After answering the integration question, implement either:
@@ -18,7 +18,7 @@ from src.config import settings
 
 @dataclass
 class AgentResponse:
-    """Normalized response from the CMUGPT agent."""
+    """Normalized response from the Bark agent."""
 
     text: str
     action: str = "respond"

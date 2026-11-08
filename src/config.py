@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     bluebubbles_password: str = ""
     bluebubbles_chat_guid: str = ""  # optional default chat to send from
 
-    # CMUGPT Agent integration
+    # Bark Agent integration
     # TODO: choose one after answering the agent-integration question.
     agent_api_url: str = ""  # e.g. http://localhost:5000/agent/respond
     agent_api_key: str = ""  # shared secret if calling the agent API

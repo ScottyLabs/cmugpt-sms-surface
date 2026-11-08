@@ -2,7 +2,7 @@
 
 import os
 import sys
-from collections.abc import AsyncIterator
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -20,7 +20,7 @@ from src.sms_handler import handle_inbound_message
 
 
 @asynccontextmanager
-async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+async def lifespan(_app: FastAPI) -> AsyncGenerator[None]:
     """Manage startup and shutdown lifecycle."""
     await start_scheduler()
     yield
@@ -30,6 +30,7 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(title=settings.app_name, debug=settings.debug, lifespan=lifespan)
 
 
+@app.get("/api/health")
 @app.get("/health")
 async def health() -> dict[str, str]:
     """Health check for load balancers and monitoring."""

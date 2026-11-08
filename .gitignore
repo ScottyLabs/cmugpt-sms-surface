@@ -1,4 +1,4 @@
-# Context folder — not part of this project
+# Context folder, not part of this project
 /cmugpt-agent/
 
 # Python bytecode and caches
@@ -28,3 +28,6 @@ ENV/
 build/
 dist/
 *.egg-info/
+
+# Nix
+.pre-commit-config.yaml
